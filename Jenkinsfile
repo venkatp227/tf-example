@@ -16,6 +16,7 @@ pipeline {
         stage('TfInit'){
             steps {
                     sh 'terraform --version'
+                    sh 'terraform providers'
                     sh "terraform init -input=false \
                      --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$REMOTESTATE_BUCKET' \
                      --backend-config='access_key=$CICD_ACCESS_KEY' --backend-config='secret_key=$CICD_SECRET_KEY'"
