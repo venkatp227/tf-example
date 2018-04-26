@@ -15,7 +15,6 @@ pipeline {
     stages {
         stage('TfInit'){
             steps {
-                dir('WORKSPACE'){
                     sh 'terraform --version'
                     sh "terraform init -input=false -plugin-dir=/var/jenkins_home/terraform_plugins \
                      --backend-config='dynamodb_table=$DYNAMODB_STATELOCK' --backend-config='bucket=$REMOTESTATE_BUCKET' \
@@ -23,17 +22,14 @@ pipeline {
                     sh "echo \$PWD"
                     sh "whoami"
                 }
-            }
         }
         stage('TfPlan'){
             steps {
-                dir('WORKSPACE'){
                     script {
                         sh "terraform plan -var 'aws_access_key=$CICD_ACCESS_KEY' -var 'aws_secret_key=$CICD_SECRET_KEY' \
                          -out terraform-networking.tfplan;echo \$? > status"
                         stash name: "terraform-plan", includes: "terraform.tfplan"
                     }
-                }
             }
         }
         stage('TfApply'){
