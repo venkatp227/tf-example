@@ -3,10 +3,6 @@ pipeline {
     tools {
         "org.jenkinsci.plugins.terraform.TerraformInstallation" "terraform-0.11.7"
     }
-    parameters {
-        // string(name: 'LAMBDA_URL', defaultValue: '', description: 'URL to the Lamdba function')
-        // string(name: 'WORKSPACE', defaultValue: 'development', description:'worspace to use in Terraform')
-    }
     environment {
         TF_HOME = tool('terraform-0.11.7')
         TF_IN_AUTOMATION = "true"
