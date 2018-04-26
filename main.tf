@@ -3,8 +3,8 @@ terraform {
 }
 
 provider "aws" {
-  version = "~> 1.16"
-  region  = "eu-west-2"
+  # version = "~> 1.16"
+  region = "eu-west-2"
 }
 
 resource "aws_eip" "my_eip" {
