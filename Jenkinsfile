@@ -51,11 +51,10 @@ pipeline {
                         currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        dir('/'){
-                            unstash "terraform-plan"
-                            sh 'terraform apply terraform.tfplan'
+                            //unstash "terraform-plan"
+                            //sh 'terraform apply terraform.tfplan'
+                            sh "echo Hello World!!!"
                         }
-                    }
                 }
             }
         }
